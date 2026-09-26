@@ -22,7 +22,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm ci
+      # --ignore-scripts: the "postinstall" script downloads a Playwright/Chromium
+      # browser used only for local dev-time testing — not needed for a static
+      # build, and downloading it here has been observed to crash npm itself
+      # ("Exit handler never called!") on the Actions runner.
+      - run: npm ci --ignore-scripts
       - run: npm run build
         env:
           NODE_ENV: production
