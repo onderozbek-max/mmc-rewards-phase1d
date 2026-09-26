@@ -43,18 +43,10 @@ export function CommunityPassSummaryCard({ lifetimePoints, isFirstBenefitUnlocke
           <>
             <div style={{ marginBottom: 12 }}>
               <Tag color="positive" variant="secondary" leading={<Icon name="CheckCircle" decorative size="small" />}>
-                Benefit unlocked
+                {FIRST_MILESTONE_POINTS}-point milestone completed
               </Tag>
             </div>
-            <ProgressIndicator
-              value={FIRST_MILESTONE_POINTS}
-              min={0}
-              max={FIRST_MILESTONE_POINTS}
-              variant="success"
-              label={`${FIRST_MILESTONE_POINTS}-point milestone`}
-              valueLabel="Completed"
-            />
-            <Heading as="div" size="small" UNSAFE_style={{ margin: '12px 0 4px' }}>{FIRST_BENEFIT_LABEL}</Heading>
+            <Heading as="div" size="small" UNSAFE_style={{ marginBottom: 4 }}>{FIRST_BENEFIT_LABEL} unlocked</Heading>
             <Caption color="subtle" as="p">{lifetimePoints} lifetime points</Caption>
           </>
         ) : (

@@ -78,6 +78,27 @@ export function StakeholderShell({ children }: { children: React.ReactNode }) {
           </Caption>
         </Section>
 
+        <Section title="Distinct member value">
+          <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
+            Without 1D, the benefit technically becomes available but the culmination of the progression journey can
+            be easy to miss.
+          </Body>
+          <Body size="medium" as="p">
+            With 1D, milestone achievement is explicitly recognized, the unlocked value is explained, and the member
+            is taken directly into that value.
+          </Body>
+        </Section>
+
+        <Section title="Population scope">
+          <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
+            1D completes the first operational 250-point experience for the initial new + &lt;250 rollout population.
+          </Body>
+          <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <li><Body size="medium">1E operationalizes the higher 1,000 / 3,000 milestones.</Body></li>
+            <li><Body size="medium">1F reconciles historical contribution and expands Community Pass to the full eligible MMC population.</Body></li>
+          </ul>
+        </Section>
+
         <Section title="What to evaluate">
           <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 8 }}>Does the member clearly understand:</Body>
           <ul style={{ margin: '0 0 12px', paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>

@@ -44,21 +44,12 @@ export function CommunityPassPage({ onNavigate, onExploreBenefits }: CommunityPa
               <>
                 <div style={{ marginBottom: 12 }}>
                   <Tag color="positive" variant="secondary" leading={<Icon name="CheckCircle" decorative size="small" />}>
-                    First milestone: {FIRST_MILESTONE_POINTS} points — completed
+                    {FIRST_MILESTONE_POINTS}-point milestone completed
                   </Tag>
                 </div>
-                <ProgressIndicator
-                  value={FIRST_MILESTONE_POINTS}
-                  min={0}
-                  max={FIRST_MILESTONE_POINTS}
-                  variant="success"
-                  label={`${FIRST_MILESTONE_POINTS}-point milestone`}
-                  valueLabel="Completed"
-                />
-                <Body size="medium" as="p" UNSAFE_style={{ margin: '12px 0 4px' }}>
+                <Body size="medium" as="p" UNSAFE_style={{ margin: '4px 0 12px' }}>
                   {FIRST_BENEFIT_LABEL}
                 </Body>
-                <Caption color="subtle" as="p" UNSAFE_style={{ marginBottom: 12 }}>Already unlocked</Caption>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                   <Body size="small" as="p">
                     <Icon name="CheckCircle" decorative size="small" style={{ verticalAlign: 'middle', marginRight: 6 }} />
@@ -124,11 +115,11 @@ export function CommunityPassPage({ onNavigate, onExploreBenefits }: CommunityPa
                   <div style={{ paddingBottom: 32 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                       <Heading as="div" size="small">{milestone.points.toLocaleString()} points</Heading>
-                      {isUnlocked && <Tag color="positive" size="small">✓ Benefit unlocked</Tag>}
+                      {isUnlocked && <Tag color="positive" size="small">✓ Unlocked</Tag>}
                       {isNext && <Tag color="info" variant="tertiary" size="small">Next benefit</Tag>}
                       {!milestone.operational && <Tag color="neutral" size="small">Future milestone</Tag>}
                     </div>
-                    <Body size="medium" color="subtle">{milestone.benefitLabel}</Body>
+                    {!isUnlocked && <Body size="medium" color="subtle">{milestone.benefitLabel}</Body>}
                   </div>
                 </div>
               );
