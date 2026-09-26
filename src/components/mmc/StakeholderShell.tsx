@@ -49,80 +49,81 @@ export function StakeholderShell({ children }: { children: React.ReactNode }) {
           <Tag color="brand" variant="primary">Phase 1D</Tag>
         </div>
         <Heading as="h2" size="large" UNSAFE_style={{ marginBottom: 4 }}>
-          Milestone Achievement &amp; Unlocks
+          Milestone Achievement Experience
         </Heading>
         <Body size="medium" color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 24 }}>
-          Completes the first 250-point vertical slice
+          Initiative type: Build + Measure
         </Body>
 
-        <Section title="Foundation">
-          <Body size="medium" as="p">1A establishes the functional Community Pass journey.</Body>
-        </Section>
-
-        <Section title="Assumption">
+        <Section title="Why this increment exists">
+          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>1C CLOSES THE EARNING LOOP</Caption>
+          <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 16 }}>
+            I participated → I earned points → my progress changed.
+          </Body>
+          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>1D CLOSES THE VALUE LOOP</Caption>
           <Body size="medium" as="p">
-            This forward-looking prototype assumes the 1B Progress Motivation experiment produced a positive result
-            and its treatment was adopted. 1C makes earning and resulting progress explicit after participation.
+            My accumulated contribution reached the promised destination → a benefit became available → I recognize
+            what happened → I understand what I earned → I can immediately access that value.
           </Body>
         </Section>
 
         <Section title="What 1D adds">
           <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
-            When participation carries a member across the first 250-point milestone, Community Pass now turns that
-            state change into a complete member experience:
+            When ordinary activity-driven progress crosses the 250-point milestone, Community Pass creates a
+            distinct achievement experience:
           </Body>
           <Caption color="subtle" isMonospace as="p">
-            Milestone reached → Benefit unlocked → Value explained → Achievement recognized → Journey continues
+            Activity completed → Points earned → Milestone reached → What's New + Member Favorites unlocked →
+            Direct access to the value
           </Caption>
         </Section>
 
-        <Section title="Post-250 behavior">
-          <Body size="medium" as="p">
-            The first milestone remains visibly completed and the benefit remains unlocked. Lifetime points continue
-            accumulating. Community Pass does not manufacture a new active progress goal until another meaningful
-            benefit destination is operationally ready.
-          </Body>
-        </Section>
-
         <Section title="What to evaluate">
-          <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <li><Body size="medium">Does reaching the milestone feel meaningfully different from ordinary progress?</Body></li>
-            <li><Body size="medium">Does the member clearly understand what they unlocked and why?</Body></li>
-            <li><Body size="medium">Does recognition feel valuable without creating status, tiers, or excessive gamification?</Body></li>
-            <li><Body size="medium">Does the resulting unlocked state remain clear after the moment ends?</Body></li>
+          <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 8 }}>Does the member clearly understand:</Body>
+          <ul style={{ margin: '0 0 12px', paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <li><Body size="medium">that this completion crossed the milestone?</Body></li>
+            <li><Body size="medium">what became available?</Body></li>
+            <li><Body size="medium">why it became available?</Body></li>
+            <li><Body size="medium">how to use it?</Body></li>
           </ul>
-        </Section>
-
-        <Section title="Scope">
           <Body size="medium" as="p">
-            This prototype completes the first operational vertical slice through the 250-point benefit. The 1,000-
-            and 3,000-point milestones represent the broader Community Pass journey; their benefit fulfillment is
-            not part of this initial vertical slice.
+            Does the moment feel meaningfully different from ordinary progress without becoming gamified?
           </Body>
         </Section>
 
         <div style={{ margin: '24px 0' }}><Divider /></div>
 
         <Section title="What changed from 1C">
-          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>PREVIOUS — 1C</Caption>
+          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>1C</Caption>
           <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
-            Successful participation explicitly shows: participate → earn points → see updated progress.
+            Activity complete → +points → updated lifetime total/progress.
           </Body>
-          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>THIS PROTOTYPE — 1D</Caption>
+          <Caption color="subtle" as="p" weight="alt" UNSAFE_style={{ marginBottom: 8 }}>1D</Caption>
           <Body size="medium" as="p">
-            When that progress crosses 250, the member now experiences: milestone reached → benefit unlocked →
-            recognition → durable unlocked state.
+            When that update crosses the milestone: achievement recognized → unlocked value explained → direct path
+            to use the value.
           </Body>
+        </Section>
+
+        <div style={{ margin: '24px 0' }}><Divider /></div>
+
+        <Section title="What is not built yet">
+          <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <li><Body size="medium">1E: Full Milestone &amp; Benefit Expansion</Body></li>
+            <li><Body size="medium">1F: Historical Reconciliation &amp; Full Population Rollout</Body></li>
+          </ul>
         </Section>
 
         <div style={{ margin: '24px 0' }}><Divider /></div>
 
         <Section title="Phase progression">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <PhaseRow label="1A · Rewards Journey" status="Foundation ✓" />
+            <PhaseRow label="1A · Progression Foundation" status="Complete ✓" />
             <PhaseRow label="1B · Progress Motivation" status="Assumed adopted ✓*" />
             <PhaseRow label="1C · Earn &amp; Progress Feedback" status="Complete ✓" />
-            <PhaseRow label="1D · Milestone Achievement &amp; Unlocks" status="Current" isCurrent />
+            <PhaseRow label="1D · Milestone Achievement Experience" status="Current" isCurrent />
+            <PhaseRow label="1E · Full Milestone &amp; Benefit Expansion" status="Not built" />
+            <PhaseRow label="1F · Historical Reconciliation &amp; Rollout" status="Not built" />
           </div>
           <Caption color="subtle" as="p" UNSAFE_style={{ marginTop: 12 }}>
             *1B carries forward under the assumed positive experiment outcome.

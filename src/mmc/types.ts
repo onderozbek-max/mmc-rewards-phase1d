@@ -34,6 +34,12 @@ export interface MilestoneDef {
 
 export type BenefitFulfillmentStatus = 'available' | 'pending' | 'failed';
 
+/** One concrete item inside an unlocked benefit module (What's New / Member Favorites). */
+export interface BenefitContentItem {
+  title: string;
+  description: string;
+}
+
 export interface MMCState {
   memberName: string;
   memberSinceLabel: string;

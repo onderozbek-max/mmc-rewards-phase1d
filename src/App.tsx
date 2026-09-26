@@ -15,6 +15,7 @@ import { CommunityPassPage } from './pages/CommunityPassPage';
 
 function MMCApp() {
   const [route, setRoute] = React.useState<Route>('home');
+  const [scrollToBenefits, setScrollToBenefits] = React.useState(false);
   const {
     pendingAchievement,
     pendingOrdinary,
@@ -25,18 +26,32 @@ function MMCApp() {
     resetToScenario,
   } = useMMC();
 
+  // The one real destination for the unlocked benefit: Home, where
+  // UnlockedBenefitsSection actually renders What's New + Member Favorites
+  // (Phase 1D spec §9/§21/§22) — never a dead end, never just closing a modal.
+  const goToBenefits = () => {
+    setRoute('home');
+    setScrollToBenefits(true);
+  };
+
   const handleViewBenefit = () => {
     dismissAchievement();
-    setRoute('community-pass');
+    goToBenefits();
   };
 
   let page: React.ReactNode;
   if (route === 'profile') {
     page = <ProfilePage onNavigate={setRoute} />;
   } else if (route === 'community-pass') {
-    page = <CommunityPassPage onNavigate={setRoute} />;
+    page = <CommunityPassPage onNavigate={setRoute} onExploreBenefits={goToBenefits} />;
   } else {
-    page = <HomePage onNavigate={setRoute} />;
+    page = (
+      <HomePage
+        onNavigate={setRoute}
+        scrollToBenefitsOnMount={scrollToBenefits}
+        onScrolledToBenefits={() => setScrollToBenefits(false)}
+      />
+    );
   }
 
   return (

@@ -1,7 +1,7 @@
 import { MMCState, WaysToProgressCompletion } from './types';
 import { historicalPrefixSummingTo } from './data';
 
-export type ScenarioId = 'primary-240' | 'ordinary-180' | 'exact-220' | 'unlocked-270';
+export type ScenarioId = 'primary-180' | 'ordinary-90' | 'exact-220' | 'unlocked-260';
 
 export interface ScenarioDef {
   id: ScenarioId;
@@ -14,7 +14,7 @@ const MEMBER_NAME = 'Onder';
 const MEMBER_SINCE = 'June 2026';
 const TODAY_LABEL = 'September 25, 2026';
 
-function baseState(historicalTarget: 180 | 220 | 240, extra: {
+function baseState(historicalTarget: 90 | 180 | 220 | 240, extra: {
   waysToProgressCompletions?: WaysToProgressCompletion[];
   benefitsUnlocked?: string[];
   milestonesReached?: number[];
@@ -34,16 +34,16 @@ function baseState(historicalTarget: 180 | 220 | 240, extra: {
 
 export const SCENARIOS: ScenarioDef[] = [
   {
-    id: 'primary-240',
-    label: 'Primary demo — 240 → milestone crossing',
-    description: '240 lifetime points, 10 points from the first benefit. Complete the 30-point activity to cross 250.',
-    build: () => baseState(240),
+    id: 'primary-180',
+    label: 'Primary demo — 180 → natural milestone journey',
+    description: '180 lifetime points. Complete the three Ways to make progress activities (+30, +20, +30) through normal tapping to naturally cross 250 — no developer tool required.',
+    build: () => baseState(180),
   },
   {
-    id: 'ordinary-180',
-    label: 'Ordinary progress — 180 → 210',
+    id: 'ordinary-90',
+    label: 'Ordinary progress — 90 → 120',
     description: 'Shows a normal 1C completion with no milestone in reach.',
-    build: () => baseState(180),
+    build: () => baseState(90),
   },
   {
     id: 'exact-220',
@@ -52,12 +52,16 @@ export const SCENARIOS: ScenarioDef[] = [
     build: () => baseState(220),
   },
   {
-    id: 'unlocked-270',
-    label: 'Already unlocked — 270 (post-achievement)',
-    description: 'Boots with the 250 benefit already unlocked and recognition already shown, to verify no replay.',
+    id: 'unlocked-260',
+    label: 'Already unlocked — 260 (post-achievement)',
+    description: 'Boots with the 250 benefit already unlocked, recognition already shown, and the journey activities completed — verifies no replay and lets you test ordinary post-unlock earning.',
     build: () =>
-      baseState(240, {
-        waysToProgressCompletions: [{ activityId: 'shape-products', dateLabel: TODAY_LABEL }],
+      baseState(180, {
+        waysToProgressCompletions: [
+          { activityId: 'shape-products', dateLabel: TODAY_LABEL },
+          { activityId: 'tell-us', dateLabel: TODAY_LABEL },
+          { activityId: 'household-favorites', dateLabel: TODAY_LABEL },
+        ],
         benefitsUnlocked: ['250'],
         milestonesReached: [250],
         achievementRecognitionShown: true,
@@ -65,7 +69,7 @@ export const SCENARIOS: ScenarioDef[] = [
   },
 ];
 
-export const DEFAULT_SCENARIO: ScenarioId = 'primary-240';
+export const DEFAULT_SCENARIO: ScenarioId = 'primary-180';
 export const TODAYS_DATE_LABEL = TODAY_LABEL;
 
 export function buildScenario(id: ScenarioId): MMCState {

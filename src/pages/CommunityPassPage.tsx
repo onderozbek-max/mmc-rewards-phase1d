@@ -8,14 +8,15 @@ import { Icon } from '../components/Icons';
 import { Button } from '../components/Button';
 import { Heading, Body, Caption } from '../components/Text';
 import { useMMC } from '../mmc/useMMCStore';
-import { MILESTONES, FIRST_MILESTONE_POINTS } from '../mmc/data';
+import { MILESTONES, FIRST_MILESTONE_POINTS, FIRST_BENEFIT_LABEL } from '../mmc/data';
 import { Route } from '../mmc/types';
 
 interface CommunityPassPageProps {
   onNavigate: (route: Route) => void;
+  onExploreBenefits: () => void;
 }
 
-export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
+export function CommunityPassPage({ onNavigate, onExploreBenefits }: CommunityPassPageProps) {
   const { lifetimePoints, isFirstBenefitUnlocked } = useMMC();
   const pointsRemaining = Math.max(FIRST_MILESTONE_POINTS - lifetimePoints, 0);
 
@@ -55,9 +56,19 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
                   valueLabel="Completed"
                 />
                 <Body size="medium" as="p" UNSAFE_style={{ margin: '12px 0 4px' }}>
-                  Early access to select Member's Mark opportunities
+                  {FIRST_BENEFIT_LABEL}
                 </Body>
-                <Caption color="subtle" as="p">Already unlocked</Caption>
+                <Caption color="subtle" as="p" UNSAFE_style={{ marginBottom: 12 }}>Already unlocked</Caption>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <Body size="small" as="p">
+                    <Icon name="CheckCircle" decorative size="small" style={{ verticalAlign: 'middle', marginRight: 6 }} />
+                    What's New — accessible
+                  </Body>
+                  <Body size="small" as="p">
+                    <Icon name="CheckCircle" decorative size="small" style={{ verticalAlign: 'middle', marginRight: 6 }} />
+                    Member Favorites — accessible
+                  </Body>
+                </div>
               </>
             ) : (
               <>
@@ -72,14 +83,18 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
                   {pointsRemaining} points to your next benefit
                 </Body>
                 <Body size="medium" weight="alt" as="p">
-                  Next benefit: Early access to select Member's Mark opportunities
+                  Next benefit: {FIRST_BENEFIT_LABEL}
                 </Body>
               </>
             )}
 
             <div style={{ marginTop: 20 }}>
-              <Button variant="primary" isFullWidth onClick={() => onNavigate('home')}>
-                Explore activities
+              <Button
+                variant="primary"
+                isFullWidth
+                onClick={isFirstBenefitUnlocked ? onExploreBenefits : () => onNavigate('home')}
+              >
+                {isFirstBenefitUnlocked ? 'Explore your benefits' : 'Explore activities'}
               </Button>
             </div>
           </div>
@@ -111,7 +126,7 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
                       <Heading as="div" size="small">{milestone.points.toLocaleString()} points</Heading>
                       {isUnlocked && <Tag color="positive" size="small">✓ Benefit unlocked</Tag>}
                       {isNext && <Tag color="info" variant="tertiary" size="small">Next benefit</Tag>}
-                      {!milestone.operational && <Tag color="neutral" size="small">Future benefit milestone</Tag>}
+                      {!milestone.operational && <Tag color="neutral" size="small">Future milestone</Tag>}
                     </div>
                     <Body size="medium" color="subtle">{milestone.benefitLabel}</Body>
                   </div>

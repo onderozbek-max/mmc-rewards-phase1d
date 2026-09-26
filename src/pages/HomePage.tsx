@@ -3,6 +3,7 @@ import { Page } from '../components/Page';
 import { Heading, Body } from '../components/Text';
 import { WelcomeCard } from '../components/mmc/WelcomeCard';
 import { CommunityPassSummaryCard } from '../components/mmc/CommunityPassSummaryCard';
+import { UnlockedBenefitsSection } from '../components/mmc/UnlockedBenefitsSection';
 import { ActivityCard } from '../components/mmc/ActivityCard';
 import { BottomNavBar, NavTab } from '../components/mmc/BottomNavBar';
 import { useMMC } from '../mmc/useMMCStore';
@@ -11,12 +12,26 @@ import { Route } from '../mmc/types';
 
 interface HomePageProps {
   onNavigate: (route: Route) => void;
+  scrollToBenefitsOnMount?: boolean;
+  onScrolledToBenefits?: () => void;
 }
 
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage({ onNavigate, scrollToBenefitsOnMount, onScrolledToBenefits }: HomePageProps) {
   const { state, lifetimePoints, isFirstBenefitUnlocked, completedWaysToProgressIds, completeActivity } = useMMC();
 
   const totalCompletedCount = state.historicalLog.length + state.waysToProgressCompletions.length;
+
+  // The achievement CTA ("Explore your benefits") and Community Pass's own
+  // benefits shortcut both land here and ask for an immediate scroll to the
+  // unlocked modules (Phase 1D spec §9/§22) — without this, the member would
+  // land on Home's top and have to notice the new section on their own.
+  React.useEffect(() => {
+    if (scrollToBenefitsOnMount) {
+      document.getElementById('mmc-benefits')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+      onScrolledToBenefits?.();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollToBenefitsOnMount]);
 
   const handleTab = (tab: NavTab) => {
     if (tab === 'home') onNavigate('home');
@@ -48,6 +63,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
               onNavigate={() => onNavigate('community-pass')}
             />
           </div>
+
+          {isFirstBenefitUnlocked && (
+            <div style={{ marginBottom: 32 }}>
+              <UnlockedBenefitsSection />
+            </div>
+          )}
 
           <Heading as="h2" size="medium" UNSAFE_style={{ marginBottom: 16 }}>
             {isFirstBenefitUnlocked ? 'Open activities' : 'Ways to make progress'} ({WAYS_TO_PROGRESS.length})
