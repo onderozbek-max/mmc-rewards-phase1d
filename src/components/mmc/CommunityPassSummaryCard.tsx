@@ -46,8 +46,16 @@ export function CommunityPassSummaryCard({ lifetimePoints, isFirstBenefitUnlocke
                 Benefit unlocked
               </Tag>
             </div>
-            <Heading as="div" size="small" UNSAFE_style={{ marginBottom: 4 }}>{FIRST_BENEFIT_LABEL}</Heading>
-            <Caption color="subtle" as="p">Unlocked at 250 lifetime points • {lifetimePoints} lifetime points</Caption>
+            <ProgressIndicator
+              value={FIRST_MILESTONE_POINTS}
+              min={0}
+              max={FIRST_MILESTONE_POINTS}
+              variant="success"
+              label={`${FIRST_MILESTONE_POINTS}-point milestone`}
+              valueLabel="Completed"
+            />
+            <Heading as="div" size="small" UNSAFE_style={{ margin: '12px 0 4px' }}>{FIRST_BENEFIT_LABEL}</Heading>
+            <Caption color="subtle" as="p">{lifetimePoints} lifetime points</Caption>
           </>
         ) : (
           <>
@@ -58,11 +66,7 @@ export function CommunityPassSummaryCard({ lifetimePoints, isFirstBenefitUnlocke
               label="toward the next benefit"
               valueLabel={`${lifetimePoints} of ${FIRST_MILESTONE_POINTS} points`}
             />
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, marginBottom: 12 }}>
-              <Caption color="subtle">0</Caption>
-              <Caption color="subtle">{FIRST_MILESTONE_POINTS}</Caption>
-            </div>
-            <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
+            <Body size="medium" as="p" UNSAFE_style={{ margin: '12px 0' }}>
               {pointsRemaining} points to your next benefit
             </Body>
             <Heading as="div" size="small" UNSAFE_style={{ marginBottom: 4 }}>{FIRST_BENEFIT_LABEL}</Heading>

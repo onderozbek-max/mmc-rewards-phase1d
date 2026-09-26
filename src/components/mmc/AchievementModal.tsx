@@ -31,7 +31,7 @@ export function AchievementModal({ achievement, onViewBenefit }: AchievementModa
       size="medium"
       actions={
         <Button variant="primary" isFullWidth onClick={onViewBenefit}>
-          View my benefit
+          View Community Pass
         </Button>
       }
     >
@@ -45,7 +45,7 @@ export function AchievementModal({ achievement, onViewBenefit }: AchievementModa
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 12 }}>
         <Icon name="CheckCircleFill" decorative size="large" style={{ color: 'var(--ld-semantic-color-progress-fill-positive, #2a8703)' }} />
-        <Caption color="subtle" weight="alt">{achievement.milestone} lifetime points</Caption>
+        <Caption color="subtle" weight="alt">{achievement.milestone}-point milestone</Caption>
         <Heading as="h2" size="medium">Benefit unlocked</Heading>
         <Body size="medium" as="p" color="subtle">
           Your participation in the Community unlocked {achievement.benefitLabel.charAt(0).toLowerCase() + achievement.benefitLabel.slice(1)}.

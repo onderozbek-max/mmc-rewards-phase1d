@@ -50,7 +50,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
 
           <Heading as="h2" size="medium" UNSAFE_style={{ marginBottom: 16 }}>
-            Ways to make progress ({WAYS_TO_PROGRESS.length})
+            {isFirstBenefitUnlocked ? 'Open activities' : 'Ways to make progress'} ({WAYS_TO_PROGRESS.length})
           </Heading>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

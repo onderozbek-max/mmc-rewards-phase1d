@@ -76,6 +76,14 @@ export function StakeholderShell({ children }: { children: React.ReactNode }) {
           </Caption>
         </Section>
 
+        <Section title="Post-250 behavior">
+          <Body size="medium" as="p">
+            The first milestone remains visibly completed and the benefit remains unlocked. Lifetime points continue
+            accumulating. Community Pass does not manufacture a new active progress goal until another meaningful
+            benefit destination is operationally ready.
+          </Body>
+        </Section>
+
         <Section title="What to evaluate">
           <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
             <li><Body size="medium">Does reaching the milestone feel meaningfully different from ordinary progress?</Body></li>

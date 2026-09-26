@@ -43,13 +43,21 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
               <>
                 <div style={{ marginBottom: 12 }}>
                   <Tag color="positive" variant="secondary" leading={<Icon name="CheckCircle" decorative size="small" />}>
-                    Already unlocked
+                    First milestone: {FIRST_MILESTONE_POINTS} points — completed
                   </Tag>
                 </div>
-                <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 4 }}>
+                <ProgressIndicator
+                  value={FIRST_MILESTONE_POINTS}
+                  min={0}
+                  max={FIRST_MILESTONE_POINTS}
+                  variant="success"
+                  label={`${FIRST_MILESTONE_POINTS}-point milestone`}
+                  valueLabel="Completed"
+                />
+                <Body size="medium" as="p" UNSAFE_style={{ margin: '12px 0 4px' }}>
                   Early access to select Member's Mark opportunities
                 </Body>
-                <Caption color="subtle" as="p">Unlocked at {FIRST_MILESTONE_POINTS} lifetime points</Caption>
+                <Caption color="subtle" as="p">Already unlocked</Caption>
               </>
             ) : (
               <>
@@ -60,11 +68,7 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
                   label="toward the next benefit"
                   valueLabel={`${lifetimePoints} of ${FIRST_MILESTONE_POINTS} points`}
                 />
-                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '4px 0 16px' }}>
-                  <Caption color="subtle">0</Caption>
-                  <Caption color="subtle">{FIRST_MILESTONE_POINTS}</Caption>
-                </div>
-                <Body size="medium" as="p" UNSAFE_style={{ marginBottom: 12 }}>
+                <Body size="medium" as="p" UNSAFE_style={{ margin: '12px 0' }}>
                   {pointsRemaining} points to your next benefit
                 </Body>
                 <Body size="medium" weight="alt" as="p">
@@ -105,9 +109,9 @@ export function CommunityPassPage({ onNavigate }: CommunityPassPageProps) {
                   <div style={{ paddingBottom: 32 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                       <Heading as="div" size="small">{milestone.points.toLocaleString()} points</Heading>
-                      {isUnlocked && <Tag color="positive" size="small">Unlocked</Tag>}
+                      {isUnlocked && <Tag color="positive" size="small">✓ Benefit unlocked</Tag>}
                       {isNext && <Tag color="info" variant="tertiary" size="small">Next benefit</Tag>}
-                      {!milestone.operational && <Tag color="neutral" size="small">Future milestone</Tag>}
+                      {!milestone.operational && <Tag color="neutral" size="small">Future benefit milestone</Tag>}
                     </div>
                     <Body size="medium" color="subtle">{milestone.benefitLabel}</Body>
                   </div>
